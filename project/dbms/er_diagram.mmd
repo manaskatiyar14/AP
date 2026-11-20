@@ -1,0 +1,58 @@
+erDiagram
+  USERS {
+    int id PK
+    varchar full_name
+    varchar email UK
+    text password_hash
+    timestamptz created_at
+  }
+  QUESTIONS {
+    int id PK
+    varchar title
+    text description
+    text option_a
+    text option_b
+    text option_c
+    text option_d
+    char correct_option
+    text explanation
+    varchar category
+    varchar difficulty
+    timestamptz created_at
+  }
+  SUBMISSIONS {
+    int id PK
+    int user_id FK
+    int question_id FK
+    char selected_option
+    boolean is_correct
+    uuid attempt_id "UK with user_id"
+    timestamptz submitted_at
+  }
+  CONTESTS {
+    int id PK
+    varchar title
+    text description
+    timestamptz start_time
+    timestamptz end_time
+    timestamptz created_at
+  }
+  CONTEST_REGISTRATIONS {
+    int id PK
+    int user_id FK "UK with contest_id"
+    int contest_id FK "UK with user_id"
+    timestamptz registered_at
+  }
+  USER_PROGRESS {
+    int id PK
+    int user_id FK,UK
+    int total_solved
+    int overall_rating
+    timestamptz updated_at
+  }
+
+  USERS ||--o{ SUBMISSIONS : makes
+  QUESTIONS ||--o{ SUBMISSIONS : receives
+  USERS ||--o{ CONTEST_REGISTRATIONS : registers
+  CONTESTS ||--o{ CONTEST_REGISTRATIONS : has
+  USERS ||--o| USER_PROGRESS : has

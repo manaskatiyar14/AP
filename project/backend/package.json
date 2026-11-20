@@ -1,0 +1,25 @@
+{
+  "name": "skillforge-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SkillForge Node.js and Express backend",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db": "node src/scripts/test-db.js",
+    "db:test": "node src/scripts/test-db.js",
+    "seed:2": "node src/scripts/seed-skillforge-2.js"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
